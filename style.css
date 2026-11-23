@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f0ff;
+    color: #39334a;
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+header h1 {
+    color: #8064b5;
+    font-size: 36px;
+}
+
+header p {
+    margin-top: 10px;
+    color: #81778f;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+}
+
+.dashboard, .task-section {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px #0000000a;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #eee7ff;
+    padding: 20px;
+    border-radius: 12px;
+    flex: 1;
+    text-align: center;
+}
+
+.card p {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #8064b5;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+input, button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+input:first-child {
+    flex: 1;
+    min-width: 0;
+}
+
+button {
+    background: #8064b5;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #674c9a;
+}
+
+@media (ma-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .stats, form {
+        flex-direction: column;
+    }
+}
