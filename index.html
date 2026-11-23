@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=""width=device-width, initial-scale="1.0"
+    <link rel=""stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>StudyPlan</h1>
+        <p>Your personal study planner</p>
+    </header>
+
+    <main> 
+        <section class="dashboard">
+            <h2>Welcome back!</h2>
+            <p>Let's make today productive.</p>
+
+            <div class="stats">
+                <div class="card">
+                    <h3>Total Tasks</h3>
+                    <p id="totalTasks">0</p>
+                </div>
+
+            <div class="card">
+                <h3>Remaining</h3>
+                <p id="completedTasks">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Remaining</h3>
+                <p id="remainingTasks">0</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="task-creation">
+        <h2>My Study Tasks</h2>
+
+        <form id="taskForm">
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter a study task..."
+                required>
+
+            <input 
+                type="date"
+                id="deadlineInput"
+                required>
+
+            <button type="submit">Add Task</button>
+        </form>
+        
+        <ul id="taskList"></ul>
+    </section>
+    </main>
+
+     <script src="script.js"></script>
+</body>
+</html>
