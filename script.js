@@ -13,10 +13,11 @@ function saveTasks() {
 taskForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const taskName = taskInput.ariaValueMax.trim();
-    const deadline = deadlineInput.ariaValueMax;
+    const taskName = taskInput.value.trim();
+    const deadline = deadlineInput.value;
+    const subject = subjectInput.value;
 
-    if (taskName === "" || deadline === "") {
+    if (taskName === "" || deadline === "" || subject === "") {
         alert("Please fill in all fields!");
         return;
     }
@@ -24,7 +25,7 @@ taskForm.addEventListener("submit", function(event) {
     const newTask = {
         id: Date.now(),
         name: taskName,
-        subject: subjectInput.value,
+        subject: subject,
         deadline: deadline,
         completed: false
     };
@@ -36,21 +37,24 @@ taskForm.addEventListener("submit", function(event) {
 
     taskInput.value = "";
     deadlineInput.value = "";
-    subjectInput.value= "";
+    subjectInput.value = "";
 });
 
 function displayTasks() {
-    taskList.innerHTML = '';
+    taskList.innerHTML = "";
 
     tasks.forEach(function(task) {
         const li = document.createElement("li");
-    
+
         const taskText = document.createElement("span");
-        taskText.textContent = 
+
+        taskText.textContent =
             `${task.name} | ${task.subject} | Due: ${task.deadline}`;
 
         const completeButton = document.createElement("button");
-        completeButton.textContent = task.completed ? "Undo" : "Complete";
+
+        completeButton.textContent =
+            task.completed ? "Undo" : "Complete";
 
         completeButton.addEventListener("click", function() {
             completeTask(task.id);
@@ -73,7 +77,6 @@ function displayTasks() {
         li.appendChild(deleteButton);
 
         taskList.appendChild(li);
-
     });
 
     updateStats();
@@ -114,3 +117,5 @@ function updateStats() {
     document.getElementById("completedTasks").textContent = completed;
     document.getElementById("remainingTasks").textContent = remaining;
 }
+
+displayTasks();
