@@ -97,3 +97,7 @@ button:hover {
         flex-direction: column;
     }
 }
+
+body {
+    background-color: lavender;
+}
