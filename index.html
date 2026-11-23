@@ -39,13 +39,22 @@
         <h2>My Study Tasks</h2>
 
         <form id="taskForm">
+            
             <input
                 type="text"
                 id="taskInput"
                 placeholder="Enter a study task..."
                 required>
 
-            <input 
+            <select id=""subjectInput" required>
+                <option value="">Select Subject</option>
+                <option value="FIT2014">FIT2014</option>
+                <option value="FIT3159">FIT3159</option>
+                <option value="FIT2179">FIT2179</option>
+                <option value="MKM3500">MKM3500</option>
+            </select>
+
+            <input
                 type="date"
                 id="deadlineInput"
                 required>

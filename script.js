@@ -2,6 +2,7 @@ const taskForm = document.getElementById("taskForm");
 const taskInput = document.getElementById("taskInput");
 const deadlineInput = document.getElementById("deadlineInput");
 const taskList = document.getElementById("taskList");
+const subjectInput = document.getElementById("subjectInput");
 
 let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
 
@@ -23,6 +24,7 @@ taskForm.addEventListener("submit", function(event) {
     const newTask = {
         id: Date.now(),
         name: taskName,
+        subject: subjectInput.value,
         deadline: deadline,
         completed: false
     };
@@ -34,6 +36,7 @@ taskForm.addEventListener("submit", function(event) {
 
     taskInput.value = "";
     deadlineInput.value = "";
+    subjectInput.value= "";
 });
 
 function displayTasks() {
@@ -43,7 +46,8 @@ function displayTasks() {
         const li = document.createElement("li");
     
         const taskText = document.createElement("span");
-        taskText.textContent = `${task.name} - Due: ${task.deadline}`;
+        taskText.textContent = 
+            `${task.name} | ${task.subject} | Due: ${task.deadline}`;
 
         const completeButton = document.createElement("button");
         completeButton.textContent = task.completed ? "Undo" : "Complete";
