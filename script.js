@@ -3,7 +3,11 @@ const taskInput = document.getElementById("taskInput");
 const deadlineInput = document.getElementById("deadlineInput");
 const taskList = document.getElementById("taskList");
 
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
+
+function saveTasks() {
+    localStorage.setItem("studyTasks", JSON.stringify(tasks));
+}
 
 taskForm.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -25,6 +29,7 @@ taskForm.addEventListener("submit", function(event) {
 
     tasks.push(newTask);
 
+    saveTasks();
     displayTasks();
 
     taskInput.value = "";
@@ -37,24 +42,31 @@ function displayTasks() {
     tasks.forEach(function(task) {
         const li = document.createElement("li");
     
-        li.innerHTML = `
-            <span> 
-                ${task.name} - Due: ${task.deadline}
-            </span>
+        const taskText = document.createElement("span");
+        taskText.textContent = `${task.name} - Due: ${task.deadline}`;
 
-            <button onclick="completeTask(${task.id})">
-                ${task.completed ? "Undo" : "Compleye"}
-            </button>
+        const completeButton = document.createElement("button");
+        completeButton.textContent = task.completed ? "Undo" : "Complete";
 
-            <button onclick="deleteTask(${task.id})">
-                Delete
-            </button>
-        `;
+        completeButton.addEventListener("click", function() {
+            completeTask(task.id);
+        });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener("click", function() {
+            deleteTask(task.id);
+        });
 
         if (task.completed) {
-            li.style.textDecoration = "line-through";
-            li.style.opacity = "0.5";
+            taskText.style.textDecoration = "line-through";
+            taskText.style.opacity = "0.5";
         }
+
+        li.appendChild(taskText);
+        li.appendChild(completeButton);
+        li.appendChild(deleteButton);
 
         taskList.appendChild(li);
 
@@ -72,6 +84,16 @@ function completeTask(id) {
         task.completed = !task.completed;
     }
 
+    saveTasks();
+    displayTasks();
+}
+
+function deleteTask(id) {
+    tasks = tasks.filter(function(task) {
+        return task.id !== id;
+    });
+
+    saveTasks();
     displayTasks();
 }
 
